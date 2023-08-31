@@ -7,5 +7,6 @@ Projeto de POO e PWEB
 
 <p>
   ◆ O codigo foi adicionado ao GitHub. <br />
-  ◆ Foi compilado os dois codigos separados em um unico codigo.
+  ◆ Foi compilado os dois codigos separados em um unico codigo. <br />
+  ◆ Foi adicionado uma pagina inicial ao projeto e um curto formulario, totalizando um formulario curto e dois formulario ocupando uma pagina inteira cada <br />
 </p>
