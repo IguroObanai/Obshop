@@ -3,7 +3,7 @@ Projeto de POO e PWEB
 
 ## Historico de Atualizações
 
-### Versão α-0.1.0 (31/08/2023)
+### Versão α-0.1.0 (25/08/2023)
 
 <p>
   ◆ O codigo foi adicionado ao GitHub. <br />
