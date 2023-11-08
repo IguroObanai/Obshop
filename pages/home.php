@@ -5,9 +5,7 @@
 </div>
 
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username"
-    aria-describedby="basic-addon2">
-  <span class="input-group-text" id="basic-addon2">@gmail.com</span>
+  <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
 </div>
 
 <div class="input-group mb-3">

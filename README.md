@@ -19,3 +19,11 @@ Projeto de POO e PWEB
   ◆ Foi adicionado a pasta "bd", da pasta "dao" e "controle" <br />
   ◆ Foi adicionado a pagina "LojaDao" e "clienteControle"
 </p>
+
+
+### Versão α-0.3.0 (08/11/2023)
+
+<p>
+  ◆  <br />
+  ◆ 
+</p>
