@@ -12,7 +12,7 @@ if ($acao == NULL) {
 } else if ($acao == "salvar") {
     $cliente = new Cliente();
     $cliente->setNome($_POST['nome']);
-    $cliente->setEmail($_POST['nome']);
+    $cliente->setEmail($_POST['email']);
     $cliente->setNascimento($_POST['nascimento']);
 
     $clienteDao->salvar($cliente);

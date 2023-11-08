@@ -18,7 +18,7 @@ class ClienteDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('INSERT INTO pessoa(nome,email,  nascimento) VALUES (:nome, :email, :nascimento)');
+        $query = $conexao->prepare('INSERT INTO cliente(nome,email,  nascimento) VALUES (:nome, :email, :nascimento)');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':email', $email);
         $query->bindParam(':nascimento', $nascimento);
