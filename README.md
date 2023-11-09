@@ -20,10 +20,9 @@ Projeto de POO e PWEB
   ◆ Foi adicionado a pagina "LojaDao" e "clienteControle"
 </p>
 
-
-### Versão α-0.3.0 (08/11/2023)
+### Versão α-0.3.0 (09/11/2023)
 
 <p>
-  ◆  <br />
+  ◆  Satirização do "feedback" na pagina inicial<br />
   ◆ 
 </p>
