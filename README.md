@@ -24,5 +24,6 @@ Projeto de POO e PWEB
 
 <p>
   ◆  Satirização do "feedback" na pagina inicial<br />
-  ◆ 
+  ◆ Adição da listagem de clientes <br/>
+  ◆ Breve estilisização do layout
 </p>

@@ -37,6 +37,20 @@ class ClienteDao
 
     public function listar()
     {
+
+        $host = "localhost";
+        $usuario = "root";
+        $senha = "aluno";
+        $bd = "loja";
+
+        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+
+        $query = $conexao->prepare('SELECT nome, nascimento FROM cliente');
+        $query->execute();
+        $clientes = $query->fetchAll(PDO::FETCH_CLASS);
+
+        return $clientes;
+
     }
 
     public function deletar($id)
