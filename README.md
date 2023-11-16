@@ -38,5 +38,6 @@ Projeto de POO e PWEB
 ### Versão α-0.4.5 (16/11/2023)
 
 <p>
-  ◆  Correção de bugs e erros
+  ◆  Correção de bugs e erros<br/>
+  ◆  Implementação do metodo de busca dos dados de um cliente
 </p>

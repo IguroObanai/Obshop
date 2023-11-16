@@ -49,4 +49,13 @@ if ($acao == NULL) {
 
     $cliente = $clienteDao->get($id);
     include 'pages/home.php';
+
+} else if ($acao == "btbuscar") {
+
+    $nome = $_POST['buscar'];
+
+    $clientes = $clienteDao->buscar($nome);
+    include 'pages/listarCliente.php';
+
+
 }
