@@ -28,7 +28,7 @@ Projeto de POO e PWEB
   ◆ Breve estilisização do layout
 </p>
 
-### Versão α-0.3.0 (15/11/2023)
+### Versão α-0.4.0 (15/11/2023)
 
 <p>
   ◆  Implementação do metodo de edição dos dados de um cliente<br />
