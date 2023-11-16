@@ -25,7 +25,21 @@ if ($acao == NULL) {
     include 'pages/listarCliente.php';
 
 } else if ($acao == "alterar") {
-    echo "alterando...";
+
+    $cliente = new Cliente();
+    $cliente->setId($_POST['id']);
+    $cliente->setNome($_POST['nome']);
+    $clienteDao->atualizar($cliente);
+
+    header("Location: ?page=clienteControle&acao=listar");
+
 } else if ($acao == "excluir") {
-    echo "excluindo...";
+    $id = $_GET['id'];
+    $clienteDao->deletar($id);
+    header("Location: ?page=clienteControle&acao=listar");
+} else if ($acao == "get") {
+    $id = $_GET['id'];
+
+    $cliente = $clienteDao->get($id);
+    include 'pages/home.php';
 }

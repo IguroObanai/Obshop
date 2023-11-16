@@ -1,19 +1,29 @@
-<h1>Login um puco diferente do convencional que agora está semelhante ao convencional</h1>
-<form action="?page=clienteControle&acao=salvar" method="post">
-  <div class="input-group mb-3">
-    <input name="nome" type="text" class="form-control" placeholder="Nome Completo" aria-label="Username" aria-describedby="basic-addon1">
+<h1 class="h3 mb-3 fw-normal">CADASTRO DE CLIENTE</h1>
+<form method="post" action="?page=clienteControle">
+  <?php if ($cliente != null) {
+    ?>
+    <input type="hidden" name="id" value="<?php echo $cliente->id; ?>" />
+    <?php
+    $nome = $cliente->nome;
+    $acao = "alterar";
+  } else {
+    $nome = '';
+    $acao = "salvar";
+  }
+  ?>
+
+  <div class="row mb-3">
+    <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="nascimento" class="col-sm-2 col-form-label">Data de Nascimento</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="nascimento" name="nascimento">
+    </div>
   </div>
 
-  <div class="input-group mb-3">
-    <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  </div>
-
-  <div class="input-group mb-3">
-    <span class="input-group-text">Data Nascimento:</span>
-    <input type="date" class="form-control" name="nascimento">
-  </div>
-
-  <div class="input-group mb-3">
-    <input type="submit" class="form-control">
-  </div>
+  <button value="<?php echo $acao; ?>" name="acao" type="submit" class="btn btn-primary">Salvar</button>
 </form>

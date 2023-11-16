@@ -55,9 +55,50 @@ class ClienteDao
 
     public function deletar($id)
     {
+        $host = "localhost";
+        $usuario = "root";
+        $senha = "aluno";
+        $bd = "loja";
+
+        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+
+        $query = $conexao->prepare('delete from cliente where id=:id');
+        $query->bindParam(':id', $id);
+        $query->execute();
     }
 
-    public function atualizar($aluno)
+    public function atualizar($cliente)
     {
+        $host = "localhost";
+        $usuario = "root";
+        $senha = "aluno";
+        $bd = "loja";
+
+        $nome = $cliente->getNome();
+        $id = $cliente->getId();
+
+        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $query = $conexao->prepare('update cliente set nome=:nome where id=:id');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':id', $id);
+        $query->execute();
+
+    }
+
+    public function get($id)
+    {
+        $host = "localhost";
+        $usuario = "root";
+        $senha = "aluno";
+        $bd = "loja";
+
+        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+
+        $query = $conexao->prepare('SELECT id, nome, nascimento FROM cliente WHERE id=:id');
+        $query->bindParam(':id', $id);
+        $query->execute();
+        $clientes = $query->fetchAll(PDO::FETCH_CLASS);
+
+        return $clientes[0];
     }
 }

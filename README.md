@@ -27,3 +27,10 @@ Projeto de POO e PWEB
   ◆ Adição da listagem de clientes <br/>
   ◆ Breve estilisização do layout
 </p>
+
+### Versão α-0.3.0 (15/11/2023)
+
+<p>
+  ◆  Implementação do metodo de edição dos dados de um cliente<br />
+  ◆  Implementação do metodo de excluir os dados de um cliente
+</p>
