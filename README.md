@@ -34,3 +34,9 @@ Projeto de POO e PWEB
   ◆  Implementação do metodo de edição dos dados de um cliente<br />
   ◆  Implementação do metodo de excluir os dados de um cliente
 </p>
+
+### Versão α-0.4.5 (16/11/2023)
+
+<p>
+  ◆  Correção de bugs e erros
+</p>

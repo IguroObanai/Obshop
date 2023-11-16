@@ -1,3 +1,8 @@
+<!-- 
+    git config --global user.name "Fulano de Tal"
+    git config --global user.email fulanodetal@exemplo.br 
+-->
+
 <?php
 
 require_once 'modelo/dominio/cliente.php';
@@ -29,6 +34,8 @@ if ($acao == NULL) {
     $cliente = new Cliente();
     $cliente->setId($_POST['id']);
     $cliente->setNome($_POST['nome']);
+    $cliente->setNascimento($_POST['nascimento']);
+
     $clienteDao->atualizar($cliente);
 
     header("Location: ?page=clienteControle&acao=listar");

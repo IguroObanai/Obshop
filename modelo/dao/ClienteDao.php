@@ -45,7 +45,7 @@ class ClienteDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT nome, nascimento FROM cliente');
+        $query = $conexao->prepare('SELECT id, nome, nascimento FROM cliente');
         $query->execute();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -76,11 +76,13 @@ class ClienteDao
 
         $nome = $cliente->getNome();
         $id = $cliente->getId();
+        $nascimento = $cliente->getNascimento();
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update cliente set nome=:nome where id=:id');
+        $query = $conexao->prepare('update cliente set nome=:nome, nascimento=:nascimento where id=:id');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':id', $id);
+        $query->bindParam(':nascimento', $nascimento);
         $query->execute();
 
     }

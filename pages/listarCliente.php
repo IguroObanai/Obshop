@@ -27,12 +27,12 @@
             <td><?php echo $cliente->nome; ?></td>
             <td><?php echo date('d/m/Y', strtotime($cliente->nascimento)); ?></td>
             <td class="text-center">
-                <a href="#" class="btn btn-warning">
+                <a href="?page=clienteControle&acao=get&id=<?php echo $cliente->id; ?>" class="btn btn-warning">
                     <i class="bi bi-pencil"></i>
                 </a>
             </td>
             <td class="text-center">
-                <a href="#" class="btn btn-danger">
+                <a href="?page=clienteControle&acao=excluir&id=<?php echo $cliente->id; ?>" class="btn btn-danger">
                     <i class="bi bi-trash"></i>
                 </a>
             </td>
