@@ -47,5 +47,5 @@ Projeto de POO e PWEB
 <p>
   ◆  Correção de novos bugs e erros<br/>
   ◆  Implementação dos campos de Email e Telefone no cadastro do cliente<br/>
-  ◆  Implementação dos campos de Email e Telefone na listagem dos clientes
-</p>
+  ◆  Implementação dos campos de Email e Telefone na listagem dos clientes<br/>
+  ◆  Foi iniciado a implementação das funcionalidade Produto e Categoria

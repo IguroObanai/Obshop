@@ -13,7 +13,7 @@ $clienteDao = new ClienteDao();
 $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : NULL;
 
 if ($acao == NULL) {
-    include 'pages/home.php';
+    include 'pages/formCliente.php';
 } else if ($acao == "salvar") {
 
     $cliente = new Cliente();
@@ -21,7 +21,6 @@ if ($acao == NULL) {
     $cliente->setEmail($_POST['email']);
     $cliente->setNascimento($_POST['nascimento']);
     $cliente->setTelefone($_POST['telefone']);
-
 
     $clienteDao->salvar($cliente);
 
@@ -52,7 +51,7 @@ if ($acao == NULL) {
     $id = $_GET['id'];
 
     $cliente = $clienteDao->get($id);
-    include 'pages/home.php';
+    include 'pages/formCliente.php';
 
 } else if ($acao == "btbuscar") {
 

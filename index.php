@@ -24,20 +24,20 @@
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="?page=clienteControle">Home</a>
+                        <a class="nav-link active" aria-current="page" href="?page=clienteControle">Cadastro Cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="?page=produtoControle">Cadastro Produto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Dropdown</a>
+                            aria-expanded="false">Listagens</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Action</a></li>
-                            <li><a class="dropdown-item" href="?page=clienteControle&acao=listar">Listagem</a></li>
+                            <li><a class="dropdown-item" href="?page=produtoeControle&acao=listar">Listagem de Produtos</a></li>
+                            <li><a class="dropdown-item" href="?page=clienteControle&acao=listar">Listagem de Clientes</a></li>
                         </ul>
                     </li>
                 </ul>
