@@ -38,6 +38,13 @@ Projeto de POO e PWEB
 ### Versão α-0.4.5 (16/11/2023)
 
 <p>
-  ◆  Correção de bugs e erros<br/>
+  ◆  Correção de alguns bugs e erros<br/>
   ◆  Implementação do metodo de busca dos dados de um cliente
+</p>
+
+### Versão α-0.4.8 (23/11/2023)
+
+<p>
+  ◆  Correção de novos bugs e erros<br/>
+  ◆  Implementação dos campos de Email e Telefone no cadastro do cliente
 </p>

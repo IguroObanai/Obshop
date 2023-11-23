@@ -20,6 +20,8 @@ if ($acao == NULL) {
     $cliente->setNome($_POST['nome']);
     $cliente->setEmail($_POST['email']);
     $cliente->setNascimento($_POST['nascimento']);
+    $cliente->setTelefone($_POST['telefone']);
+
 
     $clienteDao->salvar($cliente);
 
@@ -35,6 +37,8 @@ if ($acao == NULL) {
     $cliente->setId($_POST['id']);
     $cliente->setNome($_POST['nome']);
     $cliente->setNascimento($_POST['nascimento']);
+    $cliente->setTelefone($_POST['telefone']);
+
 
     $clienteDao->atualizar($cliente);
 

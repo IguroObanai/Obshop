@@ -15,14 +15,15 @@ class ClienteDao
         $nome = $cliente->getNome();
         $email = $cliente->getEmail();
         $nascimento = $cliente->getNascimento();
+        $telefone = $cliente->getTelefone();
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('INSERT INTO cliente(nome, email,  nascimento) VALUES (:nome, :email, :nascimento)');
+        $query = $conexao->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (:nome, :email, :nascimento, :telefone)');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':email', $email);
         $query->bindParam(':nascimento', $nascimento);
-
+        $query->bindParam(':telefone', $telefone);
 
         $query->execute();
 

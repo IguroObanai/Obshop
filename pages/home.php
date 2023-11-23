@@ -18,10 +18,25 @@
       <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
     </div>
   </div>
+
   <div class="row mb-3">
     <label for="nascimento" class="col-sm-2 col-form-label">Data de Nascimento</label>
     <div class="col-sm-10">
       <input type="date" class="form-control" id="nascimento" name="nascimento">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
+    <div class="col-sm-10">
+      <input type="tel" class="form-control" id="telefone" name="telefone">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="telefone" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" name="email" placeholder="exemplodeemail@gmail.com">
     </div>
   </div>
 
