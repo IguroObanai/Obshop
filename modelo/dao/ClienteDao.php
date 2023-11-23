@@ -46,7 +46,7 @@ class ClienteDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome, nascimento FROM cliente');
+        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente');
         $query->execute();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
 
