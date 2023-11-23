@@ -80,10 +80,12 @@ class ClienteDao
         $nascimento = $cliente->getNascimento();
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update cliente set nome=:nome, nascimento=:nascimento where id=:id');
+        $query = $conexao->prepare('update cliente set nome=:nome, nascimento=:nascimento, telefone=:telefone, email=:email where id=:id');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':id', $id);
         $query->bindParam(':nascimento', $nascimento);
+        $query->bindParam(':telefone', $telefone);
+        $query->bindParam(':email', $email);
         $query->execute();
 
     }
@@ -97,7 +99,7 @@ class ClienteDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome, nascimento FROM cliente WHERE id=:id');
+        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE id=:id');
         $query->bindParam(':id', $id);
         $query->execute();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
@@ -115,7 +117,7 @@ class ClienteDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome, nascimento FROM cliente WHERE nome like :filtro');
+        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE nome like :filtro');
         $query->bindParam(':filtro', $filtro);
         $query->execute();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);

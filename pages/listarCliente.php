@@ -18,6 +18,8 @@
     <tr>
         <th>NOME</th>
         <th>NASCIMENTO</th>
+        <th>TELEFONE</th>
+        <th>EMAIL</th>
         <th class="text-center">Editar</th>
         <th class="text-center">Excluir</th>
     </tr>
@@ -26,6 +28,8 @@
         <tr>
             <td><?php echo $cliente->nome; ?></td>
             <td><?php echo date('d/m/Y', strtotime($cliente->nascimento)); ?></td>
+            <td><?php echo $cliente->telefone; ?></td>
+            <td><?php echo $cliente->email; ?></td>
             <td class="text-center">
                 <a href="?page=clienteControle&acao=get&id=<?php echo $cliente->id; ?>" class="btn btn-warning">
                     <i class="bi bi-pencil"></i>
