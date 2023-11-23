@@ -78,6 +78,8 @@ class ClienteDao
         $nome = $cliente->getNome();
         $id = $cliente->getId();
         $nascimento = $cliente->getNascimento();
+        $telefone = $cliente->getTelefone();
+        $email = $cliente->getEmail();
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
         $query = $conexao->prepare('update cliente set nome=:nome, nascimento=:nascimento, telefone=:telefone, email=:email where id=:id');
