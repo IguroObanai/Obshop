@@ -49,3 +49,11 @@ Projeto de POO e PWEB
   ◆  Implementação dos campos de Email e Telefone no cadastro do cliente<br/>
   ◆  Implementação dos campos de Email e Telefone na listagem dos clientes<br/>
   ◆  Foi iniciado a implementação das funcionalidade Produto e Categoria
+</p>
+
+### Versão α-0.4.9 (24/11/2023)
+
+<p>
+  ◆ Estilização de uma das opções de feedback<br/>
+  ◆ Foi dado continuidade na implementação das funcionalidades Produto e Categoria<br/>
+</p>

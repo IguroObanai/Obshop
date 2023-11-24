@@ -27,9 +27,9 @@ class Categoria
         return $this->id;
     }
 
-    public function setDescriçao($descrição)
+    public function setDescricao($descricao)
     {
-        $this->descricao = $descrição;
+        $this->descricao = $descricao;
     }
 
     public function getDescricao()

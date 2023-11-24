@@ -1,6 +1,6 @@
 <!-- 
     git config --global user.name "Fulano de Tal"
-    git config --global user.email fulanodetal@exemplo.br 
+    git config --global user.email fulanodetal@gmail.com 
 -->
 
 <?php
@@ -18,6 +18,7 @@ if ($acao == NULL) {
 
     $categoria = new categoria();
     $categoria->setNome($_POST['nome']);
+    $categoria->setDescricao($_POST['descricao']);
     $categoriaDao->salvar($categoria);
 
     header("Location: ?page=categoriaControle&acao=listar");

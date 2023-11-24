@@ -73,4 +73,16 @@ class Produto
     {
         return $this->id;
     }
+
+    private $categoriaId;
+
+    public function setCategoriaId($categoriaId)
+    {
+        $this->categoriaId = $categoriaId;
+    }
+
+    public function getCategoriaId()
+    {
+        return $this->categoriaId;
+    }
 }

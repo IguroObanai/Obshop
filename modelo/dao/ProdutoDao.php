@@ -19,7 +19,7 @@ class ProdutoDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho) VALUES (:nome, :preco, :cor, :tamanho)');
+        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id) VALUES (:nome, :preco, :cor, :tamanho. :categoria_id)');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':preco', $preco);
         $query->bindParam(':cor', $cor);

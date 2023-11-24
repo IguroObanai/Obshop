@@ -30,14 +30,15 @@
                         <a class="nav-link active" aria-current="page" href="?page=produtoControle">Cadastro Produto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link active" aria-current="page" href="?page=categoriaControle">Cadastro Categoria</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">Listagens</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="?page=produtoeControle&acao=listar">Listagem de Produtos</a></li>
+                            <li><a class="dropdown-item" href="?page=produtoControle&acao=listar">Listagem de Produtos</a></li>
                             <li><a class="dropdown-item" href="?page=clienteControle&acao=listar">Listagem de Clientes</a></li>
+                            <li><a class="dropdown-item" href="?page=categoriaControle&acao=listar">Listagem de Categorias</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -79,7 +80,7 @@
                 <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Features</a></li>
                 <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Pricing</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                <li class="nav-item"><a href="inicial.html" class="nav-link px-2 text-body-secondary">About</a></li>
             </ul>
             <p class="text-center text-body-secondary">© 2023 ObShop, Inc</p>
         </footer>

@@ -13,11 +13,13 @@ class CategoriaDao
         $bd = "loja";
 
         $nome = $categoria->getNome();
-        
+        $descricao = $categoria->getDescricao();
+
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('INSERT INTO categoria(nome) VALUES (:nome)');
+        $query = $conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (:nome, :descricao)');
         $query->bindParam(':nome', $nome);
+        $query->bindParam(':descricao', $descricao);
 
         $query->execute();
 
@@ -40,7 +42,7 @@ class CategoriaDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome FROM categoria');
+        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria');
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -73,8 +75,9 @@ class CategoriaDao
         $id = $categoria->getId();
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update categoria set nome=:nome where id=:id');
+        $query = $conexao->prepare('update categoria set nome=:nome, descricao=:descricao where id=:id');
         $query->bindParam(':nome', $nome);
+        $query->bindParam(':descricao', $descricao);
         $query->bindParam(':id', $id);
         $query->execute();
 
@@ -89,7 +92,7 @@ class CategoriaDao
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome FROM categoria WHERE id=:id');
+        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=:id');
         $query->bindParam(':id', $id);
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);
@@ -103,11 +106,11 @@ class CategoriaDao
         $usuario = "root";
         $senha = "aluno";
         $bd = "loja";
-        $filtro = "%".$filtro."%";
+        $filtro = "%" . $filtro . "%";
 
         $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
 
-        $query = $conexao->prepare('SELECT id, nome FROM categoria WHERE nome like :filtro');
+        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE nome like :filtro');
         $query->bindParam(':filtro', $filtro);
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);

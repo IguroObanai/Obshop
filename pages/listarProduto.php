@@ -1,5 +1,5 @@
 
-<h3 style="margin:15px;">Produto</h3>
+<h3 style="margin:15px;">Produtos</h3>
 <hr />
 <div class="row" style="padding:15px;">
     <div class="col-5">

@@ -8,17 +8,17 @@
 require_once 'modelo/dominio/produto.php';
 require_once 'modelo/dao/produtoDao.php';
 
-require_once 'modelo/dominio/cliente.php';
-require_once 'modelo/dao/ClienteDao.php';
+require_once 'modelo/dominio/categoria.php';
+require_once 'modelo/dao/CategoriaDao.php';
 
-$clienteDao = new ClienteDao();
+$categoriaDao = new CategoriaDao();
 
 $produtoDao = new ProdutoDao();
 
 $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : NULL;
 
 if ($acao == NULL) {
-    $categorias = $clienteDao->listar();
+    $categorias = $categoriaDao->listar();
     include 'pages/formProduto.php';
 } else if ($acao == "salvar") {
 
@@ -27,6 +27,7 @@ if ($acao == NULL) {
     $produto->setPreco($_POST['preco']);
     $produto->setTamanho($_POST['tamanho']);
     $produto->setCor($_POST['cor']);
+    $produto->setCategoriaId($_POST['categoria_id']);
 
     $produtoDao->salvar($produto);
 
@@ -44,6 +45,7 @@ if ($acao == NULL) {
     $produto->setPreco($_POST['preco']);
     $produto->setTamanho($_POST['tamanho']);
     $produto->setCor($_POST['cor']);
+    $produto->setCategoriaId($_POST['categoria_id']);
 
     $produtoDao->atualizar($produto);
 
