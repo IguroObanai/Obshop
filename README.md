@@ -58,7 +58,7 @@ Projeto de POO e PWEB
   ◆ Foi dado continuidade na implementação das funcionalidades Produto e Categoria<br/>
 </p>
 
-### Versão α-0.4.9 (24/11/2023)
+### Versão α-0.5 (29/11/2023)
 
 <p>
   ◆ Foi melhorada a organização da conexão com o banco de dados com as demais classes<br/>
