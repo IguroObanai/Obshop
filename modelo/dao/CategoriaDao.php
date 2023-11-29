@@ -5,115 +5,91 @@ class CategoriaDao
 
     public function salvar($categoria)
     {
-        //  try {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $categoria->getNome();
         $descricao = $categoria->getDescricao();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-
-        $query = $conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (:nome, :descricao)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':descricao', $descricao);
+        $query = $conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (?, ?)');
+        $query->bind_param('ss', $nome, $descricao);
 
         $query->execute();
-
-        //    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //  $conexao->exec('SET NAMES "utf8"');
-
-        // } catch (Exception $e) {
-        //    print $e->getMessage();
-        //  exit();
-        // }
     }
 
     public function listar()
     {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
-
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria');
         $query->execute();
-        $categorias = $query->fetchAll(PDO::FETCH_CLASS);
+        $categorias = $query->get_result()->fetch_all(MYSQLI_ASSOC);
 
         return $categorias;
-
     }
 
     public function deletar($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('delete from categoria where id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('DELETE FROM categoria WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
     }
 
     public function atualizar($categoria)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
+
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $categoria->getNome();
+        $descricao = $categoria->getDescricao();
         $id = $categoria->getId();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update categoria set nome=:nome, descricao=:descricao where id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':descricao', $descricao);
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('UPDATE categoria SET nome=?, descricao=? WHERE id=?');
+        $query->bind_param('ssi', $nome, $descricao, $id);
         $query->execute();
-
     }
 
     public function get($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
-        $categorias = $query->fetchAll(PDO::FETCH_CLASS);
+        $categorias = $query->get_result()->fetch_all(MYSQLI_ASSOC);
 
         return $categorias[0];
     }
 
     public function buscar($filtro)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
+
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
+
         $filtro = "%" . $filtro . "%";
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-
-        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE nome like :filtro');
-        $query->bindParam(':filtro', $filtro);
+        $query = $conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE nome LIKE ?');
+        $query->bind_param('s', $filtro);
         $query->execute();
-        $categorias = $query->fetchAll(PDO::FETCH_CLASS);
+        $categorias = $query->get_result()->fetch_all(MYSQLI_ASSOC);
+
         return $categorias;
     }
 }

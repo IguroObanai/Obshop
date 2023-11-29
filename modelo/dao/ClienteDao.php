@@ -5,75 +5,55 @@ class ClienteDao
 
     public function salvar($cliente)
     {
-        //  try {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $cliente->getNome();
         $email = $cliente->getEmail();
         $nascimento = $cliente->getNascimento();
         $telefone = $cliente->getTelefone();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-
-        $query = $conexao->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (:nome, :email, :nascimento, :telefone)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':email', $email);
-        $query->bindParam(':nascimento', $nascimento);
-        $query->bindParam(':telefone', $telefone);
+        $query = $conexao->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (?, ?, ?, ?)');
+        $query->bind_param('ssss', $nome, $email, $nascimento, $telefone);
 
         $query->execute();
-
-        //    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //  $conexao->exec('SET NAMES "utf8"');
-
-        // } catch (Exception $e) {
-        //    print $e->getMessage();
-        //  exit();
-        // }
     }
 
     public function listar()
     {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
-
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente');
         $query->execute();
-        $clientes = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $clientes = $result->fetch_all(MYSQLI_ASSOC);
 
         return $clientes;
-
     }
 
     public function deletar($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('delete from cliente where id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('DELETE FROM cliente WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
     }
 
     public function atualizar($cliente)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
+
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $cliente->getNome();
         $id = $cliente->getId();
@@ -81,48 +61,42 @@ class ClienteDao
         $telefone = $cliente->getTelefone();
         $email = $cliente->getEmail();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update cliente set nome=:nome, nascimento=:nascimento, telefone=:telefone, email=:email where id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':id', $id);
-        $query->bindParam(':nascimento', $nascimento);
-        $query->bindParam(':telefone', $telefone);
-        $query->bindParam(':email', $email);
+        $query = $conexao->prepare('UPDATE cliente SET nome=?, nascimento=?, telefone=?, email=? WHERE id=?');
+        $query->bind_param('ssssi', $nome, $nascimento, $telefone, $email, $id);
         $query->execute();
-
     }
 
     public function get($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
-        $clientes = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $clientes = $result->fetch_all(MYSQLI_ASSOC);
 
         return $clientes[0];
     }
 
     public function buscar($filtro)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
-        $filtro = "%".$filtro."%";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE nome like :filtro');
-        $query->bindParam(':filtro', $filtro);
+        $filtro = "%" . $filtro . "%";
+
+        $query = $conexao->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE nome LIKE ?');
+        $query->bind_param('s', $filtro);
         $query->execute();
-        $clientes = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $clientes = $result->fetch_all(MYSQLI_ASSOC);
+
         return $clientes;
     }
 }

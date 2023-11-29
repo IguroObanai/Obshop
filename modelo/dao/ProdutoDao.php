@@ -5,75 +5,55 @@ class ProdutoDao
 
     public function salvar($produto)
     {
-        //  try {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $produto->getNome();
         $preco = $produto->getPreco();
         $cor = $produto->getCor();
         $tamanho = $produto->getTamanho();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-
-        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id) VALUES (:nome, :preco, :cor, :tamanho. :categoria_id)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':preco', $preco);
-        $query->bindParam(':cor', $cor);
-        $query->bindParam(':tamanho', $tamanho);
+        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id) VALUES (?, ?, ?, ?, ?)');
+        $query->bind_param('ssssi', $nome, $preco, $cor, $tamanho, $categoria_id);
 
         $query->execute();
-
-        //    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //  $conexao->exec('SET NAMES "utf8"');
-
-        // } catch (Exception $e) {
-        //    print $e->getMessage();
-        //  exit();
-        // }
     }
 
     public function listar()
     {
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
-
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $query = $conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto');
         $query->execute();
-        $produtos = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $produtos = $result->fetch_all(MYSQLI_ASSOC);
 
         return $produtos;
-
     }
 
     public function deletar($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('delete from produto where id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('DELETE FROM produto WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
     }
 
     public function atualizar($produto)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
+
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
         $nome = $produto->getNome();
         $id = $produto->getId();
@@ -81,48 +61,42 @@ class ProdutoDao
         $tamanho = $produto->getTamanho();
         $preco = $produto->getPreco();
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
-        $query = $conexao->prepare('update produto set nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco where id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':id', $id);
-        $query->bindParam(':cor', $cor);
-        $query->bindParam(':tamanho', $tamanho);
-        $query->bindParam(':preco', $preco);
+        $query = $conexao->prepare('UPDATE produto SET nome=?, cor=?, tamanho=?, preco=? WHERE id=?');
+        $query->bind_param('ssssi', $nome, $cor, $tamanho, $preco, $id);
         $query->execute();
-
     }
 
     public function get($id)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE id=:id');
-        $query->bindParam(':id', $id);
+        $query = $conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE id=?');
+        $query->bind_param('i', $id);
         $query->execute();
-        $produtos = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $produtos = $result->fetch_all(MYSQLI_ASSOC);
 
         return $produtos[0];
     }
 
     public function buscar($filtro)
     {
-        $host = "localhost";
-        $usuario = "root";
-        $senha = "aluno";
-        $bd = "loja";
-        $filtro = "%".$filtro."%";
+        require_once('C:\xampp\htdocs\Obshop\util\conectar.php');
 
-        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->getConexao();
 
-        $query = $conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE nome like :filtro');
-        $query->bindParam(':filtro', $filtro);
+        $filtro = "%" . $filtro . "%";
+
+        $query = $conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE nome LIKE ?');
+        $query->bind_param('s', $filtro);
         $query->execute();
-        $produtos = $query->fetchAll(PDO::FETCH_CLASS);
+        $result = $query->get_result();
+        $produtos = $result->fetch_all(MYSQLI_ASSOC);
+
         return $produtos;
     }
 }

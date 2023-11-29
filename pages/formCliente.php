@@ -1,10 +1,11 @@
 <h1 class="h3 mb-3 fw-normal">CADASTRO DE CLIENTE</h1>
 <form method="post" action="?page=clienteControle">
-  <?php if (isset($cliente)) {
+  <?php
+  if (isset($cliente)) {
     ?>
-    <input type="hidden" name="id" value="<?php echo $cliente->id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $cliente['id']; ?>" />
     <?php
-    $nome = $cliente->nome;
+    $nome = $cliente['nome'];
     $acao = "alterar";
   } else {
     $nome = '';
