@@ -14,12 +14,18 @@ class ProdutoDao
         $preco = $produto->getPreco();
         $cor = $produto->getCor();
         $tamanho = $produto->getTamanho();
+        $categoria_id = $produto->getCategoriaId();
+        $modelo_id = $produto->getModelo();
 
-        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id) VALUES (?, ?, ?, ?, ?)');
-        $query->bind_param('ssssi', $nome, $preco, $cor, $tamanho, $categoria_id);
+        // Verifique se $modelo_id é nulo e atribua um valor padrão se for
+        $modelo_id = ($modelo_id !== null) ? $modelo_id : 0; // Substitua 0 pelo valor padrão desejado
+
+        $query = $conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (?, ?, ?, ?, ?, ?)');
+        $query->bind_param('ssssii', $nome, $preco, $cor, $tamanho, $categoria_id, $modelo_id);
 
         $query->execute();
     }
+
 
     public function listar()
     {

@@ -11,6 +11,8 @@ require_once 'modelo/dao/produtoDao.php';
 require_once 'modelo/dominio/categoria.php';
 require_once 'modelo/dao/CategoriaDao.php';
 
+require_once 'modelo/dominio/modelo.php';
+
 $categoriaDao = new CategoriaDao();
 
 $produtoDao = new ProdutoDao();
@@ -28,6 +30,7 @@ if ($acao == NULL) {
     $produto->setTamanho($_POST['tamanho']);
     $produto->setCor($_POST['cor']);
     $produto->setCategoriaId($_POST['categoria_id']);
+    $produto->setModelo(isset($_POST['modelo_id']) ? $_POST['modelo_id'] : null);
 
     $produtoDao->salvar($produto);
 
@@ -45,7 +48,8 @@ if ($acao == NULL) {
     $produto->setPreco($_POST['preco']);
     $produto->setTamanho($_POST['tamanho']);
     $produto->setCor($_POST['cor']);
-    $produto->setCategoriaId($_POST['categoria_id']);
+    $produto->setCategoriaId($_POST['categoria_id']);    
+    $produto->setModelo(isset($_POST['modelo_id']) ? $_POST['modelo_id'] : null);
 
     $produtoDao->atualizar($produto);
 
@@ -67,6 +71,5 @@ if ($acao == NULL) {
 
     $produtos = $produtoDao->buscar($nome);
     include 'pages/listarProduto.php';
-
 
 }

@@ -23,6 +23,17 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Cadastros</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link active" aria-current="page" href="?page=clienteControle">Cadastro Cliente</a></li>
+                            <li><a class="nav-link active" aria-current="page" href="?page=produtoControle">Cadastro Produto</a></li>
+                            <li><a class="nav-link active" aria-current="page" href="?page=categoriaControle">Cadastro Categoria</a></li>
+                        </ul>
+                    </li> -->
+                
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="?page=clienteControle">Cadastro Cliente</a>
                     </li>
@@ -41,6 +52,8 @@
                             <li><a class="dropdown-item" href="?page=categoriaControle&acao=listar">Listagem de Categorias</a></li>
                         </ul>
                     </li>
+
+                    
                 </ul>
                 <form role="search">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">

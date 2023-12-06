@@ -54,5 +54,4 @@ if ($acao == NULL) {
     $categorias = $categoriaDao->buscar($nome);
     include 'pages/listarCategoria.php';
 
-
 }

@@ -35,14 +35,14 @@ Projeto de POO e PWEB
   ◆  Implementação do metodo de excluir os dados de um cliente
 </p>
 
-### Versão α-0.4.5 (16/11/2023)
+### Versão α-0.5 (16/11/2023)
 
 <p>
   ◆  Correção de alguns bugs e erros<br/>
   ◆  Implementação do metodo de busca dos dados de um cliente
 </p>
 
-### Versão α-0.4.8 (23/11/2023)
+### Versão α-0.6 (23/11/2023)
 
 <p>
   ◆  Correção de novos bugs e erros<br/>
@@ -51,16 +51,23 @@ Projeto de POO e PWEB
   ◆  Foi iniciado a implementação das funcionalidade Produto e Categoria
 </p>
 
-### Versão α-0.4.9 (24/11/2023)
+### Versão α-0.6.5 (24/11/2023)
 
 <p>
   ◆ Estilização de uma das opções de feedback<br/>
   ◆ Foi dado continuidade na implementação das funcionalidades Produto e Categoria<br/>
 </p>
 
-### Versão α-0.5 (29/11/2023)
+### Versão α-0.7 (29/11/2023)
 
 <p>
   ◆ Foi melhorada a organização da conexão com o banco de dados com as demais classes<br/>
+  ◆ Correção de Erros e Bugs<br/>
+</p>
+
+### Versão α-0.8 (06/11/2023)
+
+<p>
+  ◆ Foi iniciado a implementação das funcionalidade Modelo<br/>
   ◆ Correção de Erros e Bugs<br/>
 </p>
