@@ -1,8 +1,8 @@
 <?php
 
-require_once "util\conectar.php";
+require_once "modelo\dao\GenericDao.php";
 
-class ProdutoDao extends Conectar
+class ProdutoDao extends GenericDao
 {
 
     public function salvar($produto)
@@ -19,7 +19,7 @@ class ProdutoDao extends Conectar
         $modelo_id = ($modelo_id !== null) ? $modelo_id : 0; // Substitua 0 pelo valor padrão desejado
 
         $query = $this->conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (?, ?, ?, ?, ?, ?)');
-        $query->bind_param('ssssii', $nome, $preco, $cor, $tamanho, $categoria_id, $modelo_id);
+        $query->bindParam('ssssii', $nome, $preco, $cor, $tamanho, $categoria_id, $modelo_id);
 
         $query->execute();
     }
@@ -30,7 +30,6 @@ class ProdutoDao extends Conectar
 
         $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto');
         $query->execute();
-        $result = $query->get_result();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $produtos;
@@ -40,7 +39,7 @@ class ProdutoDao extends Conectar
     {
 
         $query = $this->conexao->prepare('DELETE FROM produto WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
     }
 
@@ -54,7 +53,7 @@ class ProdutoDao extends Conectar
         $preco = $produto->getPreco();
 
         $query = $this->conexao->prepare('UPDATE produto SET nome=?, cor=?, tamanho=?, preco=? WHERE id=?');
-        $query->bind_param('ssssi', $nome, $cor, $tamanho, $preco, $id);
+        $query->bindParam('ssssi', $nome, $cor, $tamanho, $preco, $id);
         $query->execute();
     }
 
@@ -62,9 +61,8 @@ class ProdutoDao extends Conectar
     {
 
         $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
-        $result = $query->get_result();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $produtos[0];
@@ -76,9 +74,8 @@ class ProdutoDao extends Conectar
         $filtro = "%" . $filtro . "%";
 
         $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE nome LIKE ?');
-        $query->bind_param('s', $filtro);
+        $query->bindParam('s', $filtro);
         $query->execute();
-        $result = $query->get_result();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $produtos;

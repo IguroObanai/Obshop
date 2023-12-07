@@ -1,9 +1,9 @@
 <?php
 
-require_once "util\conectar.php";
+require_once "modelo\dao\GenericDao.php";
 
 
-class modeloDao extends Conectar
+class modeloDao extends GenericDao
 {
 
     public function salvar($modelo)
@@ -12,8 +12,8 @@ class modeloDao extends Conectar
         $nome = $modelo->getNome();
         
 
-        $query = $this->conexao ->prepare('INSERT INTO modelo(nome) VALUES (?)');
-        $query->bind_param('s', $nome);
+        $query = $this->conexao ->prepare('INSERT INTO modelo(nome) VALUES (:s)');
+        $query->bindParam(':s', $nome);
 
         $query->execute();
     }
@@ -24,7 +24,6 @@ class modeloDao extends Conectar
 
         $query = $this->conexao ->prepare('SELECT id, nome FROM modelo');
         $query->execute();
-        $result = $query->get_result();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $modelos;
@@ -34,7 +33,7 @@ class modeloDao extends Conectar
     {
 
         $query = $this->conexao ->prepare('DELETE FROM modelo WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
     }
 
@@ -45,7 +44,7 @@ class modeloDao extends Conectar
         $id = $modelo->getId();
 
         $query = $this->conexao ->prepare('UPDATE modelo SET nome=? WHERE id=?');
-        $query->bind_param('si', $nome, $id);
+        $query->bindParam('si', $nome, $id);
         $query->execute();
     }
 
@@ -53,9 +52,8 @@ class modeloDao extends Conectar
     {
 
         $query = $this->conexao ->prepare('SELECT id, nome FROM modelo WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
-        $result = $query->get_result();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $modelos[0];
@@ -67,9 +65,8 @@ class modeloDao extends Conectar
         $filtro = "%" . $filtro . "%";
 
         $query = $this->conexao ->prepare('SELECT id, nome FROM modelo WHERE nome LIKE ?');
-        $query->bind_param('s', $filtro);
+        $query->bindParam('s', $filtro);
         $query->execute();
-        $result = $query->get_result();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $modelos;

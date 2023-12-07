@@ -22,8 +22,8 @@
 
     <?php foreach ($modelos as $modelo) { ?>
         <tr>
-            <td><?php echo $modelo['nome']; ?></td>
-            <td><?php echo $modelo['descricao']; ?></td>
+            <td><?php echo $modelo->nome; ?></td>
+            <td><?php echo $modelo->descricao; ?></td>
             <td class="text-center">
                 <a href="?page=modeloControle&acao=get&id=<?php echo $modelo['id']; ?>" class="btn btn-warning">
                     <i class="bi bi-pencil"></i>

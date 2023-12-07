@@ -1,8 +1,8 @@
 <?php
 
-require_once "util\conectar.php";
+require_once "modelo\dao\GenericDao.php";
 
-class CategoriaDao extends Conectar
+class CategoriaDao extends GenericDao
 {
 
     public function salvar($categoria)
@@ -12,7 +12,7 @@ class CategoriaDao extends Conectar
         $descricao = $categoria->getDescricao();
 
         $query = $this->conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (?, ?)');
-        $query->bind_param('ss', $nome, $descricao);
+        $query->bindParam('ss', $nome, $descricao);
 
         $query->execute();
     }
@@ -31,7 +31,7 @@ class CategoriaDao extends Conectar
     {
 
         $query = $this->conexao->prepare('DELETE FROM categoria WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
     }
 
@@ -43,7 +43,7 @@ class CategoriaDao extends Conectar
         $id = $categoria->getId();
 
         $query = $this->conexao->prepare('UPDATE categoria SET nome=?, descricao=? WHERE id=?');
-        $query->bind_param('ssi', $nome, $descricao, $id);
+        $query->bindParam('ssi', $nome, $descricao, $id);
         $query->execute();
     }
 
@@ -51,7 +51,7 @@ class CategoriaDao extends Conectar
     {
 
         $query = $this->conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -64,7 +64,7 @@ class CategoriaDao extends Conectar
         $filtro = "%" . $filtro . "%";
 
         $query = $this->conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE nome LIKE ?');
-        $query->bind_param('s', $filtro);
+        $query->bindParam('s', $filtro);
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);
 

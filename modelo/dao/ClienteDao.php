@@ -1,8 +1,8 @@
 <?php
 
-require_once "util\conectar.php";
+require_once "modelo\dao\GenericDao.php";
 
-class ClienteDao extends Conectar
+class ClienteDao extends GenericDao
 {
 
     public function salvar($cliente)
@@ -14,7 +14,7 @@ class ClienteDao extends Conectar
         $telefone = $cliente->getTelefone();
 
         $query = $this->conexao ->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (?, ?, ?, ?)');
-        $query->bind_param('ssss', $nome, $email, $nascimento, $telefone);
+        $query->bindParam('ssss', $nome, $email, $nascimento, $telefone);
 
         $query->execute();
     }
@@ -24,7 +24,6 @@ class ClienteDao extends Conectar
 
         $query = $this->conexao ->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente');
         $query->execute();
-        $result = $query->get_result();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $clientes;
@@ -34,7 +33,7 @@ class ClienteDao extends Conectar
     {
 
         $query = $this->conexao ->prepare('DELETE FROM cliente WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
     }
 
@@ -48,7 +47,7 @@ class ClienteDao extends Conectar
         $email = $cliente->getEmail();
 
         $query = $this->conexao ->prepare('UPDATE cliente SET nome=?, nascimento=?, telefone=?, email=? WHERE id=?');
-        $query->bind_param('ssssi', $nome, $nascimento, $telefone, $email, $id);
+        $query->bindParam('ssssi', $nome, $nascimento, $telefone, $email, $id);
         $query->execute();
     }
 
@@ -56,9 +55,8 @@ class ClienteDao extends Conectar
     {
 
         $query = $this->conexao ->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE id=?');
-        $query->bind_param('i', $id);
+        $query->bindParam('i', $id);
         $query->execute();
-        $result = $query->get_result();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $clientes[0];
@@ -70,9 +68,8 @@ class ClienteDao extends Conectar
         $filtro = "%" . $filtro . "%";
 
         $query = $this->conexao ->prepare('SELECT id, nome, nascimento, telefone, email FROM cliente WHERE nome LIKE ?');
-        $query->bind_param('s', $filtro);
+        $query->bindParam('s', $filtro);
         $query->execute();
-        $result = $query->get_result();
         $clientes = $query->fetchAll(PDO::FETCH_CLASS);
 
         return $clientes;
