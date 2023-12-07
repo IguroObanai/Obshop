@@ -1,29 +1,19 @@
-<?php
+<?php 
 
-class ConexaoBD
-{
-    private $host = "localhost";
-    private $usuario = "root";
-    private $senha = "aluno";
-    private $banco = "loja";
-    private $conexao;
+class Conectar{
 
-    public function __construct()
-    {
-        $this->conectar();
+    public static function getConexao(){
+        $host = "localhost";
+        $usuario = "root";
+        $senha = "aluno";
+        $bd = "loja";
+
+        $conexao = new PDO("mysql:host=$host;dbname=$bd", $usuario, $senha);
+        $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conexao->exec('SET NAMES "utf8"');
+
+        return $conexao;
     }
 
-    private function conectar()
-    {
-        $this->conexao = new mysqli($this->host, $this->usuario, $this->senha, $this->banco);
 
-        if ($this->conexao->connect_error) {
-            die("Falha na conexão: " . $this->conexao->connect_error);
-        }
-    }
-
-    public function getConexao()
-    {
-        return $this->conexao;
-    }
 }
