@@ -11,8 +11,9 @@ class CategoriaDao extends GenericDao
         $nome = $categoria->getNome();
         $descricao = $categoria->getDescricao();
 
-        $query = $this->conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (?, ?)');
-        $query->bindParam('ss', $nome, $descricao);
+        $query = $this->conexao->prepare('INSERT INTO Categoria(Nome, Descricao) VALUES (:nome, :descricao)');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':descricao', $descricao);
 
         $query->execute();
     }
@@ -40,18 +41,21 @@ class CategoriaDao extends GenericDao
 
         $nome = $categoria->getNome();
         $descricao = $categoria->getDescricao();
+        
         $id = $categoria->getId();
 
-        $query = $this->conexao->prepare('UPDATE categoria SET nome=?, descricao=? WHERE id=?');
-        $query->bindParam('ssi', $nome, $descricao, $id);
+        $query = $this->conexao->prepare('UPDATE categoria SET nome=:nome, Descricao=:descricao WHERE id=:id');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':descricao', $descricao);
+        $query->bindParam(':id', $id);
         $query->execute();
     }
 
     public function get($id)
     {
 
-        $query = $this->conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=?');
-        $query->bindParam('i', $id);
+        $query = $this->conexao->prepare('SELECT id, nome, descricao FROM categoria WHERE id=:id');
+        $query->bindParam(':id', $id);
         $query->execute();
         $categorias = $query->fetchAll(PDO::FETCH_CLASS);
 

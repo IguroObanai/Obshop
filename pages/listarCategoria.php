@@ -23,15 +23,15 @@
 
     <?php foreach ($categorias as $categoria) { ?>
         <tr>
-            <td><?php echo $categoria['nome']; ?></td>
-            <td><?php echo $categoria['descricao']; ?></td>
+            <td><?php echo $categoria->nome; ?></td>
+            <td><?php echo $categoria->descricao; ?></td>
             <td class="text-center">
-                <a href="?page=categoriaControle&acao=get&id=<?php echo $categoria['id']; ?>" class="btn btn-warning">
+                <a href="?page=categoriaControle&acao=get&id=<?php echo $categoria->id; ?>" class="btn btn-warning">
                     <i class="bi bi-pencil"></i>
                 </a>
             </td>
             <td class="text-center">
-                <a href="?page=categoriaControle&acao=excluir&id=<?php echo $categoria['id']; ?>" class="btn btn-danger">
+                <a href="?page=categoriaControle&acao=excluir&id=<?php echo $categoria->id; ?>" class="btn btn-danger">
                     <i class="bi bi-trash"></i>
                 </a>
             </td>

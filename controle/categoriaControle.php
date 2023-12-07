@@ -32,6 +32,7 @@ if ($acao == NULL) {
     $categoria = new categoria();
     $categoria->setId($_POST['id']);
     $categoria->setNome($_POST['nome']);
+    $categoria->setDescricao($_POST['descricao']);
 
     $categoriaDao->atualizar($categoria);
 
