@@ -23,26 +23,18 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
-                    <!-- <li class="nav-item dropdown">
+
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">Cadastros</a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link active" aria-current="page" href="?page=clienteControle">Cadastro Cliente</a></li>
-                            <li><a class="nav-link active" aria-current="page" href="?page=produtoControle">Cadastro Produto</a></li>
-                            <li><a class="nav-link active" aria-current="page" href="?page=categoriaControle">Cadastro Categoria</a></li>
+                            <li><a class="dropdown-item" href="?page=produtoControle">Cadrastro de Produtos</a></li>
+                            <li><a class="dropdown-item" href="?page=clienteControle">Cadrastro de Clientes</a></li>
+                            <li><a class="dropdown-item" href="?page=categoriaControle">Cadrastro de Categorias</a></li>
+                            <li><a class="dropdown-item" href="?page=modeloControle">Cadrastro de Modelos</a></li>
                         </ul>
-                    </li> -->
-                
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="?page=clienteControle">Cadastro Cliente</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="?page=produtoControle">Cadastro Produto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="?page=categoriaControle">Cadastro Categoria</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">Listagens</a>
@@ -50,10 +42,11 @@
                             <li><a class="dropdown-item" href="?page=produtoControle&acao=listar">Listagem de Produtos</a></li>
                             <li><a class="dropdown-item" href="?page=clienteControle&acao=listar">Listagem de Clientes</a></li>
                             <li><a class="dropdown-item" href="?page=categoriaControle&acao=listar">Listagem de Categorias</a></li>
+                            <li><a class="dropdown-item" href="?page=modeloControle&acao=listar">Listagem de Modelos</a></li>
                         </ul>
                     </li>
 
-                    
+
                 </ul>
                 <form role="search">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
@@ -80,9 +73,8 @@
         ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"> 
-        </script>
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+            </script>
 
     </div>
 
@@ -90,8 +82,10 @@
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="?page=home" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Features</a>
+                </li>
+                <li class="nav-item"><a href="?page=pagamento" class="nav-link px-2 text-body-secondary">Pricing</a>
+                </li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
                 <li class="nav-item"><a href="inicial.html" class="nav-link px-2 text-body-secondary">About</a></li>
             </ul>

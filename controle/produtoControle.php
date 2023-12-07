@@ -12,15 +12,18 @@ require_once 'modelo/dominio/categoria.php';
 require_once 'modelo/dao/CategoriaDao.php';
 
 require_once 'modelo/dominio/modelo.php';
+require_once 'modelo/dao/ModeloDao.php';
 
 $categoriaDao = new CategoriaDao();
-
+$modeloDao = new ModeloDao();
 $produtoDao = new ProdutoDao();
 
 $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : NULL;
 
 if ($acao == NULL) {
     $categorias = $categoriaDao->listar();
+    $modelos = $modeloDao->listar();
+
     include 'pages/formProduto.php';
 } else if ($acao == "salvar") {
 

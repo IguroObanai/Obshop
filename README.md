@@ -65,9 +65,18 @@ Projeto de POO e PWEB
   ◆ Correção de Erros e Bugs<br/>
 </p>
 
-### Versão α-0.8 (06/11/2023)
+### Versão α-0.8 (06/12/2023)
 
 <p>
   ◆ Foi iniciado a implementação das funcionalidade Modelo<br/>
   ◆ Correção de Erros e Bugs<br/>
+</p>
+
+
+### Versão α-0.9 (07/11/2023)
+
+<p>
+  ◆ Foi dado continuidade a implementação das funcionalidade Modelo<br/>
+  ◆ Correção de Erros e Bugs referentes ao cadastro de produtos<br/>
+  ◆ Aplicação dos DAO's ao GenericDao
 </p>
