@@ -3,9 +3,9 @@
   <?php
   if (isset($modelo)) {
     ?>
-    <input type="hidden" name="id" value="<?php echo $modelo['id']; ?>" />
+    <input type="hidden" name="id" value="<?php echo $modelo->id; ?>" />
     <?php
-    $nome = $modelo['nome'];
+    $nome = $modelo->nome;
     $acao = "alterar";
   } else {
     $nome = '';
@@ -17,6 +17,13 @@
     <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="descricao" class="col-sm-2 col-form-label">Descrição:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="descricao" name="descricao">
     </div>
   </div>
 

@@ -73,10 +73,20 @@ Projeto de POO e PWEB
 </p>
 
 
-### Versão α-0.9 (07/11/2023)
+### Versão α-0.9 (07/12/2023)
 
 <p>
   ◆ Foi dado continuidade a implementação das funcionalidade Modelo<br/>
   ◆ Correção de Erros e Bugs referentes ao cadastro de produtos<br/>
+  ◆ Implementação do video Da Tu Cosita na pagina inicial<br />
   ◆ Aplicação dos DAO's ao GenericDao
+</p>
+
+### Versão α-0.9.5 (08/12/2023)
+
+<p>
+  ◆ O projeto está colapsando, nossos devs estão tentando resolver os problemas<br/>
+  ◆ Correção de erros e bugs relacionado ao cadastro e listagem<br />
+  ◆ Conversão dos DAO's que estavam em mysqli para PDO<br />
+
 </p>

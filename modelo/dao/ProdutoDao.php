@@ -1,13 +1,12 @@
 <?php
 
-require_once "modelo\dao\GenericDao.php";
+require_once "modelo/dao/GenericDao.php";
 
 class ProdutoDao extends GenericDao
 {
 
     public function salvar($produto)
     {
-
         $nome = $produto->getNome();
         $preco = $produto->getPreco();
         $cor = $produto->getCor();
@@ -15,11 +14,13 @@ class ProdutoDao extends GenericDao
         $categoria_id = $produto->getCategoriaId();
         $modelo_id = $produto->getModelo();
 
-        // Verifique se $modelo_id é nulo e atribua um valor padrão se for
-        $modelo_id = ($modelo_id !== null) ? $modelo_id : 0; // Substitua 0 pelo valor padrão desejado
-
-        $query = $this->conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (?, ?, ?, ?, ?, ?)');
-        $query->bindParam('ssssii', $nome, $preco, $cor, $tamanho, $categoria_id, $modelo_id);
+        $query = $this->conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (:nome, :preco, :cor, :tamanho, :categoria_id, :modelo_id)');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':preco', $preco);
+        $query->bindParam(':cor', $cor);
+        $query->bindParam(':tamanho', $tamanho);
+        $query->bindParam(':categoria_id', $categoria_id);
+        $query->bindParam(':modelo_id', $modelo_id);
 
         $query->execute();
     }
@@ -27,7 +28,6 @@ class ProdutoDao extends GenericDao
 
     public function listar()
     {
-
         $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto');
         $query->execute();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
@@ -37,31 +37,32 @@ class ProdutoDao extends GenericDao
 
     public function deletar($id)
     {
-
-        $query = $this->conexao->prepare('DELETE FROM produto WHERE id=?');
-        $query->bindParam('i', $id);
+        $query = $this->conexao->prepare('DELETE FROM produto WHERE id=:id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 
     public function atualizar($produto)
     {
-
         $nome = $produto->getNome();
         $id = $produto->getId();
         $cor = $produto->getCor();
         $tamanho = $produto->getTamanho();
         $preco = $produto->getPreco();
 
-        $query = $this->conexao->prepare('UPDATE produto SET nome=?, cor=?, tamanho=?, preco=? WHERE id=?');
-        $query->bindParam('ssssi', $nome, $cor, $tamanho, $preco, $id);
+        $query = $this->conexao->prepare('UPDATE produto SET nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco WHERE id=:id');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':cor', $cor);
+        $query->bindParam(':tamanho', $tamanho);
+        $query->bindParam(':preco', $preco);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 
     public function get($id)
     {
-
-        $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE id=?');
-        $query->bindParam('i', $id);
+        $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE id=:id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -70,11 +71,10 @@ class ProdutoDao extends GenericDao
 
     public function buscar($filtro)
     {
-
         $filtro = "%" . $filtro . "%";
 
-        $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE nome LIKE ?');
-        $query->bindParam('s', $filtro);
+        $query = $this->conexao->prepare('SELECT id, nome, cor, tamanho, preco FROM produto WHERE nome LIKE :filtro');
+        $query->bindParam(':filtro', $filtro, PDO::PARAM_STR);
         $query->execute();
         $produtos = $query->fetchAll(PDO::FETCH_CLASS);
 

@@ -3,9 +3,9 @@
   <?php
   if (isset($cliente)) {
     ?>
-    <input type="hidden" name="id" value="<?php echo $cliente['id']; ?>" />
+    <input type="hidden" name="id" value="<?php echo $cliente->id; ?>" />
     <?php
-    $nome = $cliente['nome'];
+    $nome = $cliente->nome;
     $acao = "alterar";
   } else {
     $nome = '';

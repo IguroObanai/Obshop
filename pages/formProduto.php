@@ -1,9 +1,9 @@
 <h1 class="h3 mb-3 fw-normal">CADASTRO DE PRODUTO</h1>
 <form method="post" action="?page=produtoControle">
   <?php if (isset($produto)) { ?>
-    <input type="hidden" name="id" value="<?php echo $produto['id']; ?>" />
+    <input type="hidden" name="id" value="<?php echo $produto->id; ?>" />
     <?php
-    $nome = $produto['nome'];
+    $nome = $produto->nome;
     $acao = "alterar";
   } else {
     $nome = '';
@@ -55,8 +55,8 @@
     <div class="col-sm-10">
       <select name="categoria_id" id="categoria_id" class="form-control">
         <?php foreach ($categorias as $categoria) { ?>
-          <option value="<?php echo $categoria['id']; ?>">
-            <?php echo $categoria['nome']; ?>
+          <option value="<?php echo $categoria->id; ?>">
+            <?php echo $categoria->nome; ?>
           </option>
         <?php } ?>
       </select>
@@ -64,9 +64,15 @@
   </div>
 
   <div class="row mb-3">
-    <label for="cor" class="col-sm-2 col-form-label">Modelo:</label>
+    <label for="modelo_id" class="col-sm-2 col-form-label">Modelo:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="modelo" name="modelo">
+      <select name="modelo_id" id="modelo_id" class="form-control">
+        <?php foreach ($modelos as $modelo) { ?>
+          <option value="<?php echo $modelo->id; ?>">
+            <?php echo $modelo->nome; ?>
+          </option>
+        <?php } ?>
+      </select>
     </div>
   </div>
 

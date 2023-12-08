@@ -1,19 +1,16 @@
 <?php
 
-require_once "modelo\dao\GenericDao.php";
+require_once "modelo/dao/GenericDao.php";
 
-
-class modeloDao extends GenericDao
+class ModeloDao extends GenericDao
 {
 
     public function salvar($modelo)
     {
-
         $nome = $modelo->getNome();
-        
 
-        $query = $this->conexao ->prepare('INSERT INTO modelo(nome) VALUES (:s)');
-        $query->bindParam(':s', $nome);
+        $query = $this->conexao->prepare('INSERT INTO modelo(nome) VALUES (:nome)');
+        $query->bindParam(':nome', $nome);
 
         $query->execute();
     }
@@ -21,8 +18,7 @@ class modeloDao extends GenericDao
 
     public function listar()
     {
-
-        $query = $this->conexao ->prepare('SELECT id, nome FROM modelo');
+        $query = $this->conexao->prepare('SELECT id, nome FROM modelo');
         $query->execute();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -31,28 +27,26 @@ class modeloDao extends GenericDao
 
     public function deletar($id)
     {
-
-        $query = $this->conexao ->prepare('DELETE FROM modelo WHERE id=?');
-        $query->bindParam('i', $id);
+        $query = $this->conexao->prepare('DELETE FROM modelo WHERE id=:id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 
     public function atualizar($modelo)
     {
-
         $nome = $modelo->getNome();
         $id = $modelo->getId();
 
-        $query = $this->conexao ->prepare('UPDATE modelo SET nome=? WHERE id=?');
-        $query->bindParam('si', $nome, $id);
+        $query = $this->conexao->prepare('UPDATE modelo SET nome=:nome WHERE id=:id');
+        $query->bindParam(':nome', $nome);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 
     public function get($id)
     {
-
-        $query = $this->conexao ->prepare('SELECT id, nome FROM modelo WHERE id=?');
-        $query->bindParam('i', $id);
+        $query = $this->conexao->prepare('SELECT id, nome FROM modelo WHERE id=:id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 
@@ -61,11 +55,10 @@ class modeloDao extends GenericDao
 
     public function buscar($filtro)
     {
-
         $filtro = "%" . $filtro . "%";
 
-        $query = $this->conexao ->prepare('SELECT id, nome FROM modelo WHERE nome LIKE ?');
-        $query->bindParam('s', $filtro);
+        $query = $this->conexao->prepare('SELECT id, nome FROM modelo WHERE nome LIKE :filtro');
+        $query->bindParam(':filtro', $filtro, PDO::PARAM_STR);
         $query->execute();
         $modelos = $query->fetchAll(PDO::FETCH_CLASS);
 

@@ -15,7 +15,6 @@
 <table class="table">
     <tr>
         <th>NOME</th>
-        <th>DESCRIÇÃO</th>
         <th class="text-center">Editar</th>
         <th class="text-center">Excluir</th>
     </tr>
@@ -23,14 +22,13 @@
     <?php foreach ($modelos as $modelo) { ?>
         <tr>
             <td><?php echo $modelo->nome; ?></td>
-            <td><?php echo $modelo->descricao; ?></td>
             <td class="text-center">
-                <a href="?page=modeloControle&acao=get&id=<?php echo $modelo['id']; ?>" class="btn btn-warning">
+                <a href="?page=modeloControle&acao=get&id=<?php echo $modelo->id; ?>" class="btn btn-warning">
                     <i class="bi bi-pencil"></i>
                 </a>
             </td>
             <td class="text-center">
-                <a href="?page=modeloControle&acao=excluir&id=<?php echo $modelo['id']; ?>" class="btn btn-danger">
+                <a href="?page=modeloControle&acao=excluir&id=<?php echo $modelo->id; ?>" class="btn btn-danger">
                     <i class="bi bi-trash"></i>
                 </a>
             </td>
