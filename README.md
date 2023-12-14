@@ -95,6 +95,7 @@ Projeto de POO e PWEB
 
 <p>
   ◆ Correção final dos erros e bugs relacionado ao cadastro e listagem<br />
-  ◆ Iniciad a implemtenação da funcionalidade de Trasações no projeto<br />
+  ◆ Foi implementado a funcionalidade de Trasações no projeto<br />
+  ◆ PROJETO FINALIZADO<br />
 
 </p>
