@@ -7,22 +7,31 @@ class ProdutoDao extends GenericDao
 
     public function salvar($produto)
     {
-        $nome = $produto->getNome();
-        $preco = $produto->getPreco();
-        $cor = $produto->getCor();
-        $tamanho = $produto->getTamanho();
-        $categoria_id = $produto->getCategoriaId();
-        $modelo_id = $produto->getModelo();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (:nome, :preco, :cor, :tamanho, :categoria_id, :modelo_id)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':preco', $preco);
-        $query->bindParam(':cor', $cor);
-        $query->bindParam(':tamanho', $tamanho);
-        $query->bindParam(':categoria_id', $categoria_id);
-        $query->bindParam(':modelo_id', $modelo_id);
+            $nome = $produto->getNome();
+            $preco = $produto->getPreco();
+            $cor = $produto->getCor();
+            $tamanho = $produto->getTamanho();
+            $categoria_id = $produto->getCategoriaId();
+            $modelo_id = $produto->getModelo();
 
-        $query->execute();
+            $query = $this->conexao->prepare('INSERT INTO produto(nome, preco, cor, tamanho, categoria_id, modelo_id) VALUES (:nome, :preco, :cor, :tamanho, :categoria_id, :modelo_id)');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':preco', $preco);
+            $query->bindParam(':cor', $cor);
+            $query->bindParam(':tamanho', $tamanho);
+            $query->bindParam(':categoria_id', $categoria_id);
+            $query->bindParam(':modelo_id', $modelo_id);
+
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
 
@@ -37,30 +46,48 @@ class ProdutoDao extends GenericDao
 
     public function deletar($id)
     {
-        $query = $this->conexao->prepare('DELETE FROM produto WHERE id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        try {
+            $this->conexao->beginTransaction();
+
+            $query = $this->conexao->prepare('DELETE FROM produto WHERE id=:id');
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function atualizar($produto)
     {
-        $nome = $produto->getNome();
-        $id = $produto->getId();
-        $cor = $produto->getCor();
-        $tamanho = $produto->getTamanho();
-        $preco = $produto->getPreco();
-        $modelo_id = $produto->getModelo();
-        $categoria_id = $produto->getCategoriaId();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('UPDATE produto SET nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco, categoria_id=:categoria_id, modelo_id=:modelo_id WHERE id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':cor', $cor);
-        $query->bindParam(':tamanho', $tamanho);
-        $query->bindParam(':preco', $preco);
-        $query->bindParam(':categoria_id', $categoria_id);
-        $query->bindParam(':modelo_id', $modelo_id);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+            $nome = $produto->getNome();
+            $id = $produto->getId();
+            $cor = $produto->getCor();
+            $tamanho = $produto->getTamanho();
+            $preco = $produto->getPreco();
+            $modelo_id = $produto->getModelo();
+            $categoria_id = $produto->getCategoriaId();
+
+            $query = $this->conexao->prepare('UPDATE produto SET nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco, categoria_id=:categoria_id, modelo_id=:modelo_id WHERE id=:id');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':cor', $cor);
+            $query->bindParam(':tamanho', $tamanho);
+            $query->bindParam(':preco', $preco);
+            $query->bindParam(':categoria_id', $categoria_id);
+            $query->bindParam(':modelo_id', $modelo_id);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function get($id)

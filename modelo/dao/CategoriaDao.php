@@ -7,14 +7,23 @@ class CategoriaDao extends GenericDao
 
     public function salvar($categoria)
     {
-        $nome = $categoria->getNome();
-        $descricao = $categoria->getDescricao();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('INSERT INTO categoria(nome, descricao) VALUES (:nome, :descricao)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':descricao', $descricao);
+            $nome = $categoria->getNome();
+            $descricao = $categoria->getDescricao();
 
-        $query->execute();
+            $query = $this->conexao->prepare('INSERT INTO categoria(nome, descricao) VALUES (:nome, :descricao)');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':descricao', $descricao);
+
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function listar()
@@ -28,22 +37,40 @@ class CategoriaDao extends GenericDao
 
     public function deletar($id)
     {
-        $query = $this->conexao->prepare('DELETE FROM categoria WHERE id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        try {
+            $this->conexao->beginTransaction();
+
+            $query = $this->conexao->prepare('DELETE FROM categoria WHERE id=:id');
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function atualizar($categoria)
     {
-        $nome = $categoria->getNome();
-        $descricao = $categoria->getDescricao();
-        $id = $categoria->getId();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('UPDATE categoria SET nome=:nome, descricao=:descricao WHERE id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':descricao', $descricao);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+            $nome = $categoria->getNome();
+            $descricao = $categoria->getDescricao();
+            $id = $categoria->getId();
+
+            $query = $this->conexao->prepare('UPDATE categoria SET nome=:nome, descricao=:descricao WHERE id=:id');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':descricao', $descricao);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function get($id)

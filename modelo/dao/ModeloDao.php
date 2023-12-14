@@ -7,12 +7,21 @@ class ModeloDao extends GenericDao
 
     public function salvar($modelo)
     {
-        $nome = $modelo->getNome();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('INSERT INTO modelo(nome) VALUES (:nome)');
-        $query->bindParam(':nome', $nome);
+            $nome = $modelo->getNome();
 
-        $query->execute();
+            $query = $this->conexao->prepare('INSERT INTO modelo(nome) VALUES (:nome)');
+            $query->bindParam(':nome', $nome);
+
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
 
@@ -27,20 +36,38 @@ class ModeloDao extends GenericDao
 
     public function deletar($id)
     {
-        $query = $this->conexao->prepare('DELETE FROM modelo WHERE id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        try {
+            $this->conexao->beginTransaction();
+
+            $query = $this->conexao->prepare('DELETE FROM modelo WHERE id=:id');
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function atualizar($modelo)
     {
-        $nome = $modelo->getNome();
-        $id = $modelo->getId();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('UPDATE modelo SET nome=:nome WHERE id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+            $nome = $modelo->getNome();
+            $id = $modelo->getId();
+
+            $query = $this->conexao->prepare('UPDATE modelo SET nome=:nome WHERE id=:id');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function get($id)

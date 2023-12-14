@@ -7,18 +7,27 @@ class ClienteDao extends GenericDao
 
     public function salvar($cliente)
     {
-        $nome = $cliente->getNome();
-        $email = $cliente->getEmail();
-        $nascimento = $cliente->getNascimento();
-        $telefone = $cliente->getTelefone();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (:nome, :email, :nascimento, :telefone)');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':email', $email);
-        $query->bindParam(':nascimento', $nascimento);
-        $query->bindParam(':telefone', $telefone);
+            $nome = $cliente->getNome();
+            $email = $cliente->getEmail();
+            $nascimento = $cliente->getNascimento();
+            $telefone = $cliente->getTelefone();
 
-        $query->execute();
+            $query = $this->conexao->prepare('INSERT INTO cliente(nome, email, nascimento, telefone) VALUES (:nome, :email, :nascimento, :telefone)');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':email', $email);
+            $query->bindParam(':nascimento', $nascimento);
+            $query->bindParam(':telefone', $telefone);
+
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function listar()
@@ -32,26 +41,44 @@ class ClienteDao extends GenericDao
 
     public function deletar($id)
     {
-        $query = $this->conexao->prepare('DELETE FROM cliente WHERE id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        try {
+            $this->conexao->beginTransaction();
+
+            $query = $this->conexao->prepare('DELETE FROM cliente WHERE id=:id');
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function atualizar($cliente)
     {
-        $nome = $cliente->getNome();
-        $id = $cliente->getId();
-        $nascimento = $cliente->getNascimento();
-        $telefone = $cliente->getTelefone();
-        $email = $cliente->getEmail();
+        try {
+            $this->conexao->beginTransaction();
 
-        $query = $this->conexao->prepare('UPDATE cliente SET nome=:nome, nascimento=:nascimento, telefone=:telefone, email=:email WHERE id=:id');
-        $query->bindParam(':nome', $nome);
-        $query->bindParam(':nascimento', $nascimento);
-        $query->bindParam(':telefone', $telefone);
-        $query->bindParam(':email', $email);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+            $nome = $cliente->getNome();
+            $id = $cliente->getId();
+            $nascimento = $cliente->getNascimento();
+            $telefone = $cliente->getTelefone();
+            $email = $cliente->getEmail();
+
+            $query = $this->conexao->prepare('UPDATE cliente SET nome=:nome, nascimento=:nascimento, telefone=:telefone, email=:email WHERE id=:id');
+            $query->bindParam(':nome', $nome);
+            $query->bindParam(':nascimento', $nascimento);
+            $query->bindParam(':telefone', $telefone);
+            $query->bindParam(':email', $email);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->conexao->commit();
+        } catch (Exception $e) {
+            $this->conexao->rollBack();
+            throw $e;
+        }
     }
 
     public function get($id)
