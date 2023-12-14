@@ -51,9 +51,8 @@ if ($acao == NULL) {
     $produto->setPreco($_POST['preco']);
     $produto->setTamanho($_POST['tamanho']);
     $produto->setCor($_POST['cor']);
-    $produto->setCategoriaId($_POST['categoria_id']);    
-    $produto->setModelo(isset($_POST['modelo_id']) ? $_POST['modelo_id'] : null);
-
+    $produto->setCategoriaId($_POST['categoria_id']);
+    $produto->setModelo($_POST['modelo_id']);    
     $produtoDao->atualizar($produto);
 
     header("Location: ?page=produtoControle&acao=listar");
@@ -64,6 +63,9 @@ if ($acao == NULL) {
     header("Location: ?page=produtoControle&acao=listar");
 } else if ($acao == "get") {
     $id = $_GET['id'];
+
+    $categorias = $categoriaDao->listar();
+    $modelos = $modeloDao->listar();
 
     $produto = $produtoDao->get($id);
     include 'pages/formProduto.php';

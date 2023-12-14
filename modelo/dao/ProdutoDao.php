@@ -49,12 +49,16 @@ class ProdutoDao extends GenericDao
         $cor = $produto->getCor();
         $tamanho = $produto->getTamanho();
         $preco = $produto->getPreco();
+        $modelo_id = $produto->getModelo();
+        $categoria_id = $produto->getCategoriaId();
 
-        $query = $this->conexao->prepare('UPDATE produto SET nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco WHERE id=:id');
+        $query = $this->conexao->prepare('UPDATE produto SET nome=:nome, cor=:cor, tamanho=:tamanho, preco=:preco, categoria_id=:categoria_id, modelo_id=:modelo_id WHERE id=:id');
         $query->bindParam(':nome', $nome);
         $query->bindParam(':cor', $cor);
         $query->bindParam(':tamanho', $tamanho);
         $query->bindParam(':preco', $preco);
+        $query->bindParam(':categoria_id', $categoria_id);
+        $query->bindParam(':modelo_id', $modelo_id);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }

@@ -37,7 +37,7 @@ if ($acao == NULL) {
     $cliente->setNome($_POST['nome']);
     $cliente->setNascimento($_POST['nascimento']);
     $cliente->setTelefone($_POST['telefone']);
-
+    $cliente->setEmail($_POST['email']);
 
     $clienteDao->atualizar($cliente);
 

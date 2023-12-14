@@ -90,3 +90,11 @@ Projeto de POO e PWEB
   ◆ Conversão dos DAO's que estavam em mysqli para PDO<br />
 
 </p>
+
+### Versão 1.0 (14/12/2023)
+
+<p>
+  ◆ Correção final dos erros e bugs relacionado ao cadastro e listagem<br />
+  ◆ Iniciad a implemtenação da funcionalidade de Trasações no projeto<br />
+
+</p>
